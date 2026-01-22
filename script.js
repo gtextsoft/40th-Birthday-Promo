@@ -82,101 +82,40 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ========================================
-// RESERVE PLOT FUNCTION
+// RESERVE PLOT FUNCTION - Redirects to Zoho Forms
 // ========================================
 function reservePlot(estateName) {
-    // Scroll to contact form
-    const contactForm = document.getElementById('contact-form');
-    const estateSelect = document.getElementById('estate');
+    // Zoho form URLs for each estate
+    const zohoForms = {
+        'JASPER': 'https://zfrmz.com/1NJB081pOUxpEoTL6ojs',
+        'GARNET': 'https://zfrmz.com/Z9wcmnyYV10yzcAd4cMG',
+        'SAPPHIRE': 'https://zfrmz.com/7VfiikCg9MpFuEYfFphD',
+        'SARDIUS': 'https://zfrmz.com/bzwLwyVrOEfwnZoyc3F5'
+    };
     
-    if (contactForm && estateSelect) {
-        // Set the estate value in the form
-        estateSelect.value = estateName;
-        
-        // Scroll to form
-        contactForm.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-        
-        // Add a highlight effect to the form
-        const formWrapper = contactForm.querySelector('.form-wrapper');
-        formWrapper.style.transform = 'scale(1.02)';
-        formWrapper.style.transition = 'transform 0.3s ease';
-        
-        setTimeout(() => {
-            formWrapper.style.transform = 'scale(1)';
-        }, 300);
-        
-        // Focus on the name input
-        setTimeout(() => {
-            document.getElementById('name').focus();
-        }, 500);
+    // Redirect to the appropriate Zoho form
+    if (zohoForms[estateName]) {
+        window.open(zohoForms[estateName], '_blank');
+    } else {
+        // If estate not found, scroll to payment section
+        const paymentSection = document.getElementById('payment-section');
+        if (paymentSection) {
+            paymentSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     }
 }
 
 // ========================================
-// FORM SUBMISSION
+// FORM SUBMISSION (Removed - using Zoho forms instead)
 // ========================================
-document.getElementById('plot-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        estate: document.getElementById('estate').value,
-        paymentPlan: document.getElementById('payment-plan').value,
-        message: document.getElementById('message').value
-    };
-    
-    // For now, show a success message
-    // In production, you would send this to a backend or email service
-    showSuccessMessage(formData);
-    
-    // You can also redirect to WhatsApp with pre-filled message
-    // redirectToWhatsApp(formData);
-});
+// Form submission is now handled by Zoho forms
+// This section is kept for potential future use
 
-function showSuccessMessage(formData) {
-    const estateName = document.getElementById('estate').selectedOptions[0].text;
-    const message = `
-        Thank you, ${formData.name}!
-        
-        Your application for ${estateName} has been received.
-        
-        We will contact you shortly at ${formData.email} or ${formData.phone}.
-        
-        Get ready to secure your future! 🎉
-    `;
-    
-    alert(message);
-    
-    // Reset form
-    document.getElementById('plot-form').reset();
-}
-
-function redirectToWhatsApp(formData) {
-    const estateName = document.getElementById('estate').selectedOptions[0].text;
-    const paymentPlan = document.getElementById('payment-plan').selectedOptions[0].text;
-    
-    const message = `Hi! I want to secure a plot at ${estateName}.
-
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Payment Plan: ${paymentPlan}
-${formData.message ? 'Message: ' + formData.message : ''}
-
-Please send me more details.`;
-    
-    const whatsappNumber = 'YOUR_WHATSAPP_NUMBER'; // Replace with actual number
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    
-    window.open(whatsappURL, '_blank');
-}
+// Form submission functions removed - using Zoho forms instead
+// Zoho forms handle submission and confirmation automatically
 
 // ========================================
 // INTERSECTION OBSERVER FOR ANIMATIONS
@@ -302,21 +241,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========================================
 // FORM VALIDATION ENHANCEMENT
 // ========================================
-const formInputs = document.querySelectorAll('.plot-form input, .plot-form select, .plot-form textarea');
-
-formInputs.forEach(input => {
-    input.addEventListener('blur', function() {
-        if (this.value.trim() !== '' && this.checkValidity()) {
-            this.style.borderColor = '#4caf50';
-        } else if (this.value.trim() !== '' && !this.checkValidity()) {
-            this.style.borderColor = '#f44336';
-        }
-    });
-    
-    input.addEventListener('focus', function() {
-        this.style.borderColor = 'var(--accent-gold)';
-    });
-});
+// Form validation removed - using Zoho forms instead
+// Zoho forms handle their own validation
 
 // ========================================
 // PAGE LOAD ANIMATIONS
