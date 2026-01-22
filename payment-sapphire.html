@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Payment - Sapphire City Phase 3 | 40th Birthday Promo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-page {
+            min-height: 100vh;
+            background: var(--off-white);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .payment-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .payment-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--primary-navy);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .payment-header p {
+            font-size: 1.25rem;
+            color: var(--medium-gray);
+        }
+
+        .property-summary {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .property-summary h2 {
+            color: var(--primary-navy);
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .property-summary h2 i {
+            color: var(--accent-gold);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .summary-label {
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .summary-value {
+            color: var(--primary-navy);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .account-details-section {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .account-details-section h2 {
+            color: var(--primary-navy);
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .account-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .payment-steps {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 77, 191, 0.1) 100%);
+            border: 2px solid var(--accent-gold);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .payment-steps h3 {
+            color: var(--primary-navy);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            counter-increment: step-counter;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            position: relative;
+            padding-left: calc(var(--spacing-lg) + var(--spacing-md));
+        }
+
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-gold);
+            color: var(--primary-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .steps-list li strong {
+            color: var(--primary-navy);
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .form-cta {
+            text-align: center;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-cta h3 {
+            color: var(--primary-navy);
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .form-cta p {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: var(--spacing-lg);
+            color: var(--medium-gray);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .back-link:hover {
+            color: var(--primary-navy);
+        }
+
+        @media (max-width: 768px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon"><i class="fas fa-gift"></i></span>
+                    <span class="logo-text">40th Birthday Promo</span>
+                </div>
+                <a href="index.html" class="nav-cta-btn">Back to Estates</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Page -->
+    <section class="payment-page">
+        <div class="payment-container">
+            <div class="payment-header">
+                <h1>Complete Your Purchase</h1>
+                <p>Sapphire City Phase 3 - Gwagwalada, Abuja</p>
+            </div>
+
+            <!-- Property Summary -->
+            <div class="property-summary">
+                <h2><i class="fas fa-building"></i> Property Details</h2>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span class="summary-label">Estate Name</span>
+                        <span class="summary-value">Sapphire City – Phase 3</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Location</span>
+                        <span class="summary-value">Gwagwalada, Abuja</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Plot Size</span>
+                        <span class="summary-value">400sqm</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Title</span>
+                        <span class="summary-value">C of O (Area Council / AGIS Verified)</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Allocation Date</span>
+                        <span class="summary-value">18th January 2026</span>
+                    </div>
+                </div>
+                <div class="detail-item highlight" style="margin-top: var(--spacing-md); padding: var(--spacing-sm); border-radius: var(--radius-md);">
+                    <span class="detail-label"><i class="fas fa-gift"></i> Bonus:</span>
+                    <span class="detail-value">Waiver on Development & Documentation Fees</span>
+                </div>
+                <div class="pricing-section">
+                    <h4 class="pricing-title"><i class="fas fa-birthday-cake"></i> Founder's Birthday Offer</h4>
+                    <div class="price-options">
+                        <div class="price-option">
+                            <div class="price-label">Outright</div>
+                            <div class="price-new">₦3.6M</div>
+                            <div class="price-old">was ₦6M</div>
+                        </div>
+                        <div class="price-option">
+                            <div class="price-label">Mini-Estate (6+ plots)</div>
+                            <div class="price-new">₦3M</div>
+                        </div>
+                        <div class="price-option">
+                            <div class="price-label">Premium Mini-Estate</div>
+                            <div class="price-new">₦5M</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Details -->
+            <div class="account-details-section">
+                <h2>Our Account Details</h2>
+                <img src="assest/acc.jpeg" alt="Account Details - GTEXTLAND LIMITED" class="account-image">
+                <p style="color: var(--medium-gray); margin-top: var(--spacing-md);">
+                    <strong>Account Name:</strong> GTEXTLAND LIMITED<br>
+                    Make payment to either ProvidusBank or Access Bank account shown above.
+                </p>
+            </div>
+
+            <!-- Payment Steps -->
+            <div class="payment-steps">
+                <h3><i class="fas fa-list-ol"></i> Payment Instructions</h3>
+                <ol class="steps-list">
+                    <li>
+                        <strong>Step 1: Make Payment</strong>
+                        Complete payment into the account number shown above (ProvidusBank: 1308305323 or Access Bank: 1497602357). Account Name: GTEXTLAND LIMITED
+                    </li>
+                    <li>
+                        <strong>Step 2: Fill Verification Form</strong>
+                        After completing your payment, click the button below to fill the verification form with your payment details and personal information.
+                    </li>
+                    <li>
+                        <strong>Step 3: Receive Confirmation</strong>
+                        Once you submit the form, you will receive allocation & documentation details instantly in your email.
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Form CTA -->
+            <div class="form-cta">
+                <h3>Ready to Complete Your Purchase?</h3>
+                <p>After making payment, fill the form below to verify your purchase and receive your allocation details.</p>
+                <a href="https://zfrmz.com/7VfiikCg9MpFuEYfFphD" target="_blank" class="btn btn-primary btn-large">
+                    <span>Fill Verification Form</span>
+                    <span class="btn-arrow">→</span>
+                </a>
+                <br>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Estates
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
